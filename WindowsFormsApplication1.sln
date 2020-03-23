@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabelWinForm", "WindowsFormsApplication1\TabelWinForm.csproj", "{C994E7F0-A4FB-47ED-B6D3-68306A69A0F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabelLibrary", "TabelLibrary\TabelLibrary.csproj", "{80BA9271-58A0-4A3D-821D-6CB2144279D6}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{8C9F00CB-16AD-4274-A68F-EF6C321E7DEC}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{9450A769-7D61-47D8-A334-51F98D9C481E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,13 @@ Global
 		{80BA9271-58A0-4A3D-821D-6CB2144279D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80BA9271-58A0-4A3D-821D-6CB2144279D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80BA9271-58A0-4A3D-821D-6CB2144279D6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C9F00CB-16AD-4274-A68F-EF6C321E7DEC}.Debug|Any CPU.ActiveCfg = Debug
-		{8C9F00CB-16AD-4274-A68F-EF6C321E7DEC}.Release|Any CPU.ActiveCfg = Release
+		{9450A769-7D61-47D8-A334-51F98D9C481E}.Debug|Any CPU.ActiveCfg = Debug
+		{9450A769-7D61-47D8-A334-51F98D9C481E}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {960154C5-1905-4B01-B389-00A9C1E5912D}
 	EndGlobalSection
 EndGlobal

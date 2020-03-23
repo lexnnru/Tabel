@@ -422,6 +422,22 @@
         f//Z
 </value>
   </data>
+  <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        /9j/4AAQSkZJRgABAQEARwBHAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkK
+        DA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQ
+        EBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAAZABkDAREAAhEBAxEB/8QA
+        GQABAAMBAQAAAAAAAAAAAAAABgIFBwQJ/8QALhAAAQMDAwIEBAcAAAAAAAAAAQIDBAAFEQYSIQcxCBNB
+        URQVYaEjMjRScYGR/8QAFwEBAQEBAAAAAAAAAAAAAAAAAgEAA//EAB0RAAMBAQEAAwEAAAAAAAAAAAAB
+        EQISIQMTMUH/2gAMAwEAAhEDEQA/APUO43KLCiyJ86YiJBiJK331qwAB359BVXpAa/1T0A3qiBp1MuM8
+        J0f4gTw8gst8EhKlE5Cjj7ilxqUlX4K7Re7XdoSLpZLk1PgLUUeY2vcEkHB5+h96LTXjLS13CoUz/qm/
+        qhvp++nTtoiT/OYcE8Pkfhs7CVLSCRuUD6c08Tr0LsM20rpbo9J6Prul0eh/MfhnFyJC3sSGpAztSlOc
+        98YGOa661vuIKSgu8PT2pl6JTGutpiR7OlsqgyGyA4+SpW8rTn74GaHzTrwubBz59w+tDwx23uzwrtbJ
+        lkuja1wJ7am3NiikpB78jke+aicdQjOXvD3opepoF1jIZTZ48ctyIKlKUX3ACAsr3cemffFdPu1IHlUe
+        aZ0xZ9MWhGntOtOIgoWtalLcKzlRyQCe/tx2oa09OsU/iL3yW/2j/KJSZrGDr/6/+6QBA3+RP8CiMnWM
+        f//Z
+</value>
+  </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>592, 17</value>
   </metadata>

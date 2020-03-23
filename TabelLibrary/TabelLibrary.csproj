@@ -55,6 +55,7 @@
     <Compile Include="Model\Data\DataDb.cs" />
     <Compile Include="Model\Data\MailSet.cs" />
     <Compile Include="Model\Data\DataAd.cs" />
+    <Compile Include="Model\Data\PGVR.cs" />
     <Compile Include="Model\Db.cs" />
     <Compile Include="Model\HoliYear.cs" />
     <Compile Include="Model\Reg.cs" />

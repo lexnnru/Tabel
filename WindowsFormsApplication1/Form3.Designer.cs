@@ -51,6 +51,7 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.отправитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +67,8 @@
             this.справочникКомпанииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.labelNoty = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.cbPGVR = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.userControl11 = new WindowsFormsApplication1.UserControl1();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDB)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -77,12 +80,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewDB.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewDB.ColumnHeadersHeight = 29;
             this.dataGridViewDB.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewDB.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.dataGridViewDB.Location = new System.Drawing.Point(-1, 36);
             this.dataGridViewDB.MultiSelect = false;
             this.dataGridViewDB.Name = "dataGridViewDB";
             this.dataGridViewDB.ReadOnly = true;
+            this.dataGridViewDB.RowHeadersWidth = 51;
             this.dataGridViewDB.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridViewDB.RowTemplate.Height = 24;
             this.dataGridViewDB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -158,9 +163,9 @@
             // tbSpecAch
             // 
             this.tbSpecAch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbSpecAch.Location = new System.Drawing.Point(961, 326);
+            this.tbSpecAch.Location = new System.Drawing.Point(961, 367);
             this.tbSpecAch.Name = "tbSpecAch";
-            this.tbSpecAch.Size = new System.Drawing.Size(285, 180);
+            this.tbSpecAch.Size = new System.Drawing.Size(300, 139);
             this.tbSpecAch.TabIndex = 27;
             this.tbSpecAch.Text = "";
             // 
@@ -169,7 +174,7 @@
             this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(964, 306);
+            this.label15.Location = new System.Drawing.Point(970, 347);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(197, 17);
             this.label15.TabIndex = 28;
@@ -292,6 +297,20 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.Location = new System.Drawing.Point(1249, 319);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(25, 25);
+            this.button2.TabIndex = 51;
+            this.toolTip1.SetToolTip(this.button2, "Редактирование списка городов");
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -302,14 +321,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.ShowItemToolTips = true;
-            this.menuStrip1.Size = new System.Drawing.Size(1282, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1282, 30);
             this.menuStrip1.TabIndex = 46;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // отправитьToolStripMenuItem
             // 
             this.отправитьToolStripMenuItem.Name = "отправитьToolStripMenuItem";
-            this.отправитьToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
+            this.отправитьToolStripMenuItem.Size = new System.Drawing.Size(97, 26);
             this.отправитьToolStripMenuItem.Text = "Отправить";
             this.отправитьToolStripMenuItem.ToolTipText = "Отправка готового табеля.\r\nПримечание: необходимо предварительно настроить почтов" +
     "ый клиент. Настрйки - Почтовый клиент";
@@ -322,13 +341,13 @@
             this.почтовогоКлиентаToolStripMenuItem,
             this.производственныйКалендарьToolStripMenuItem});
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
             this.настройкиToolStripMenuItem.Text = "Настройки";
             // 
             // настройкиПочтовогоКлиентаToolStripMenuItem
             // 
             this.настройкиПочтовогоКлиентаToolStripMenuItem.Name = "настройкиПочтовогоКлиентаToolStripMenuItem";
-            this.настройкиПочтовогоКлиентаToolStripMenuItem.Size = new System.Drawing.Size(383, 26);
+            this.настройкиПочтовогоКлиентаToolStripMenuItem.Size = new System.Drawing.Size(391, 26);
             this.настройкиПочтовогоКлиентаToolStripMenuItem.Text = "Значения по умолчаню табельных данных";
             this.настройкиПочтовогоКлиентаToolStripMenuItem.ToolTipText = "Значения по умолчаню будут выставляться полям перед добавлении новой записи в таб" +
     "ель.";
@@ -337,7 +356,7 @@
             // почтовогоКлиентаToolStripMenuItem
             // 
             this.почтовогоКлиентаToolStripMenuItem.Name = "почтовогоКлиентаToolStripMenuItem";
-            this.почтовогоКлиентаToolStripMenuItem.Size = new System.Drawing.Size(383, 26);
+            this.почтовогоКлиентаToolStripMenuItem.Size = new System.Drawing.Size(391, 26);
             this.почтовогоКлиентаToolStripMenuItem.Text = "Почтовый клиент";
             this.почтовогоКлиентаToolStripMenuItem.ToolTipText = "Настройки почтового клиента, необходимы для отправки готовго табеля.";
             this.почтовогоКлиентаToolStripMenuItem.Click += new System.EventHandler(this.почтовогоКлиентаToolStripMenuItem_Click);
@@ -345,7 +364,7 @@
             // производственныйКалендарьToolStripMenuItem
             // 
             this.производственныйКалендарьToolStripMenuItem.Name = "производственныйКалендарьToolStripMenuItem";
-            this.производственныйКалендарьToolStripMenuItem.Size = new System.Drawing.Size(383, 26);
+            this.производственныйКалендарьToolStripMenuItem.Size = new System.Drawing.Size(391, 26);
             this.производственныйКалендарьToolStripMenuItem.Text = "Производственный календарь";
             this.производственныйКалендарьToolStripMenuItem.ToolTipText = "Производственный календарь необходим для отображения в табеле выходных и празднич" +
     "ных дней.";
@@ -359,13 +378,13 @@
             this.intranetToolStripMenuItem,
             this.справочникКомпанииToolStripMenuItem});
             this.дополнительныеВозможностиToolStripMenuItem.Name = "дополнительныеВозможностиToolStripMenuItem";
-            this.дополнительныеВозможностиToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.дополнительныеВозможностиToolStripMenuItem.Size = new System.Drawing.Size(134, 26);
             this.дополнительныеВозможностиToolStripMenuItem.Text = "Дополнительно";
             // 
             // консольToolStripMenuItem1
             // 
             this.консольToolStripMenuItem1.Name = "консольToolStripMenuItem1";
-            this.консольToolStripMenuItem1.Size = new System.Drawing.Size(244, 26);
+            this.консольToolStripMenuItem1.Size = new System.Drawing.Size(252, 26);
             this.консольToolStripMenuItem1.Text = "Консоль ";
             this.консольToolStripMenuItem1.ToolTipText = "Позволяет сделать запрос к базе данных SQLlite, в которой храняться данные табеля" +
     ".";
@@ -377,13 +396,13 @@
             this.дляОтправкиВСтороннемПочтовомКлиентеToolStripMenuItem,
             this.вEXELEToolStripMenuItem});
             this.выгрузитьToolStripMenuItem.Name = "выгрузитьToolStripMenuItem";
-            this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.выгрузитьToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.выгрузитьToolStripMenuItem.Text = "Выгрузить";
             // 
             // дляОтправкиВСтороннемПочтовомКлиентеToolStripMenuItem
             // 
             this.дляОтправкиВСтороннемПочтовомКлиентеToolStripMenuItem.Name = "дляОтправкиВСтороннемПочтовомКлиентеToolStripMenuItem";
-            this.дляОтправкиВСтороннемПочтовомКлиентеToolStripMenuItem.Size = new System.Drawing.Size(404, 26);
+            this.дляОтправкиВСтороннемПочтовомКлиентеToolStripMenuItem.Size = new System.Drawing.Size(412, 26);
             this.дляОтправкиВСтороннемПочтовомКлиентеToolStripMenuItem.Text = "Для отправки в стороннем почтовом клиенте";
             this.дляОтправкиВСтороннемПочтовомКлиентеToolStripMenuItem.ToolTipText = "Позволяет выгрузить табель в отдельный файл формата json, и отправить табель без " +
     "использования встроенного почтового клиента. ";
@@ -392,7 +411,7 @@
             // вEXELEToolStripMenuItem
             // 
             this.вEXELEToolStripMenuItem.Name = "вEXELEToolStripMenuItem";
-            this.вEXELEToolStripMenuItem.Size = new System.Drawing.Size(404, 26);
+            this.вEXELEToolStripMenuItem.Size = new System.Drawing.Size(412, 26);
             this.вEXELEToolStripMenuItem.Text = "В Excel";
             this.вEXELEToolStripMenuItem.ToolTipText = "Выгрузка табеля в exel документ.";
             this.вEXELEToolStripMenuItem.Click += new System.EventHandler(this.вEXELEToolStripMenuItem_Click);
@@ -400,14 +419,14 @@
             // intranetToolStripMenuItem
             // 
             this.intranetToolStripMenuItem.Name = "intranetToolStripMenuItem";
-            this.intranetToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.intranetToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.intranetToolStripMenuItem.Text = "Внутренний сайт";
             this.intranetToolStripMenuItem.Click += new System.EventHandler(this.intranetToolStripMenuItem_Click);
             // 
             // справочникКомпанииToolStripMenuItem
             // 
             this.справочникКомпанииToolStripMenuItem.Name = "справочникКомпанииToolStripMenuItem";
-            this.справочникКомпанииToolStripMenuItem.Size = new System.Drawing.Size(244, 26);
+            this.справочникКомпанииToolStripMenuItem.Size = new System.Drawing.Size(252, 26);
             this.справочникКомпанииToolStripMenuItem.Text = "Справочник компании";
             this.справочникКомпанииToolStripMenuItem.Click += new System.EventHandler(this.справочникКомпанииToolStripMenuItem_Click);
             // 
@@ -423,6 +442,29 @@
             this.labelNoty.TabIndex = 48;
             this.labelNoty.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // cbPGVR
+            // 
+            this.cbPGVR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbPGVR.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbPGVR.FormattingEnabled = true;
+            this.cbPGVR.Location = new System.Drawing.Point(960, 320);
+            this.cbPGVR.Name = "cbPGVR";
+            this.cbPGVR.Size = new System.Drawing.Size(279, 24);
+            this.cbPGVR.TabIndex = 49;
+            this.cbPGVR.SelectedValueChanged += new System.EventHandler(this.cbPGVR_SelectedValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(970, 300);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 17);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "ПГВР:";
+            // 
             // userControl11
             // 
             this.userControl11.Location = new System.Drawing.Point(1293, 523);
@@ -436,6 +478,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1282, 953);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbPGVR);
             this.Controls.Add(this.labelNoty);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btDelete);
@@ -511,5 +556,8 @@
         private System.Windows.Forms.Label labelNoty;
         private UserControl1 userControl11;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.ComboBox cbPGVR;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button2;
     }
 }

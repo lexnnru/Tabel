@@ -7,6 +7,8 @@ using System.Web.Script.Serialization;
 using System.IO;
 using TabelLibrary.Data;
 using System.Threading;
+using System.Data;
+using TabelLibrary.Model.Data;
 
 namespace WindowsFormsApplication1
 {
@@ -18,6 +20,7 @@ namespace WindowsFormsApplication1
         public string mail;
         public string subject;
         public string message;
+        List<PGVR> listpgvr;
 
 
 
@@ -34,6 +37,7 @@ namespace WindowsFormsApplication1
             mail = s.saveParam.username;
             subject= s.saveParam.subject;
             message = s.saveParam.message;
+            listpgvr = new List<PGVR>();
         }
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
 {
@@ -95,6 +99,12 @@ namespace WindowsFormsApplication1
             cbCity.DataSource = db.GetTableCity();
             cbCity.DisplayMember = "City";
             cbCity.SelectedIndex = cbCity.Items.Count - 1;
+            
+            
+            DataTable dataTable = db.GetTablePGVR();
+            for (int j = 0; j < dataTable.Rows.Count; j++)
+            { listpgvr.Add(new PGVR(dataTable.Rows[j].ItemArray[1].ToString(), dataTable.Rows[j].ItemArray[2].ToString())); }
+            cbPGVR.DataSource = listpgvr;
             dtStart.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             dtStart.CustomFormat = "HH:mm";
             dtEnd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
@@ -702,7 +712,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Point point = cbCity.Location;
+            Point point = cbPGVR.Location;
             FormCity formCity = new FormCity(point);
 
             formCity.RefreshCity += FormCity_RefreshCity;
@@ -714,6 +724,19 @@ namespace WindowsFormsApplication1
         private void FormCity_RefreshCity()
         {
             cbCity.DataSource = db.GetTableCity();
+
+        }
+        private void RefreshPGVR()
+        {
+            listpgvr = new List<PGVR>();
+            DataTable dataTable = db.GetTablePGVR();
+            
+            for (int j = 0; j < dataTable.Rows.Count; j++)
+            {
+                listpgvr.Add(new PGVR(dataTable.Rows[j].ItemArray[1].ToString(),
+                    dataTable.Rows[j].ItemArray[2].ToString()));
+            }
+            cbPGVR.DataSource = listpgvr;
 
         }
 
@@ -810,6 +833,19 @@ namespace WindowsFormsApplication1
                 labelNoty.Update();
             }
         }
-    
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Point point = cbPGVR.Location;
+            FormPGVR formPGVR = new FormPGVR(point);
+            formPGVR.RefreshPGVR += RefreshPGVR;
+            this.Opacity = (10);
+            formPGVR.ShowDialog();
+        }
+
+        private void cbPGVR_SelectedValueChanged(object sender, EventArgs e)
+        {
+            tbSpecAch.Text += "ПГВР: " +listpgvr[cbPGVR.SelectedIndex].Pgvr+ " ";
+        }
     }
 }

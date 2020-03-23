@@ -44,7 +44,6 @@ namespace WindowsFormsApplication1
             cbSpec.Text = Properties.Settings.Default.specCheck;
             tbSpecAch.Text = Properties.Settings.Default.specAchiv;
         }
-
         private void btSave_Click(object sender, EventArgs e)
         {
                 Properties.Settings.Default.family = tbFamily.Text;

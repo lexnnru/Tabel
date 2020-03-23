@@ -53,6 +53,7 @@ namespace TabelLibrary
         public int minEnd { get; set; }
         public string gip { get; set; }
         public string city { get; set; }
+        public string pgvr { get; set; }
         public string specCheck { get; set; }
         public string specAchiv { get; set; }
         public int id { get; set; }
@@ -125,6 +126,18 @@ namespace TabelLibrary
             sqlDbconn.Close();
             return sqlTable;
         }
+        public DataTable GetTablePGVR()
+        {
+
+            sqlDbconn.Open();
+            DataTable sqlTable = new DataTable();
+            SQLiteCommand sqlcmd = sqlDbconn.CreateCommand();
+            sqlcmd.CommandText = "SELECT * FROM PGVR";
+            SQLiteDataReader dr = sqlcmd.ExecuteReader();
+            sqlTable.Load(dr);
+            sqlDbconn.Close();
+            return sqlTable;
+        }
 
 
         public void AddCity(string City)
@@ -151,6 +164,29 @@ namespace TabelLibrary
                 sqlDbconn.Close();
             }
         }
+        public void AddPGVR(string PGVR, string Descr)
+        {
+            sqlDbconn.Open();
+            SQLiteCommand sqlcmd = sqlDbconn.CreateCommand();
+            sqlcmd.CommandText = "select * from PGVR where PGVR =( @pgvr )";
+            sqlcmd.Parameters.Add("@pgvr", System.Data.DbType.String).Value = PGVR;
+            sqlcmd.Parameters.Add("@descr", System.Data.DbType.String).Value = Descr;
+            SQLiteDataReader dr = sqlcmd.ExecuteReader();
+            if (dr.HasRows == false)
+            {
+                dr.Close();
+                sqlDbconn.Close();
+                sqlDbconn.Open();
+                sqlcmd.CommandText = "INSERT INTO PGVR (PGVR, descr) VALUES ( @pgvr, @descr )  ";
+                sqlcmd.ExecuteNonQuery();
+                sqlDbconn.Close();
+            }
+            else
+            {
+                dr.Close();
+                sqlDbconn.Close();
+            }
+        }
         public void DellCity(string City)
         {
             this.city = City;
@@ -159,6 +195,17 @@ namespace TabelLibrary
             SQLiteCommand sqlcmd = sqlDbconn.CreateCommand();
             sqlcmd.CommandText = "DELETE FROM City WHERE City like (@city)";
             sqlcmd.Parameters.Add("@city", System.Data.DbType.String).Value = city;
+            sqlcmd.ExecuteNonQuery();
+            sqlDbconn.Close();
+        }
+        public void DellPGVR(string PGVR)
+        {
+            this.pgvr = PGVR;
+
+            sqlDbconn.Open();
+            SQLiteCommand sqlcmd = sqlDbconn.CreateCommand();
+            sqlcmd.CommandText = "DELETE FROM PGVR WHERE PGVR like (@pgvr)";
+            sqlcmd.Parameters.Add("@pgvr", System.Data.DbType.String).Value = pgvr;
             sqlcmd.ExecuteNonQuery();
             sqlDbconn.Close();
         }

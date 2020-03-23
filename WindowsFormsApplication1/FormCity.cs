@@ -46,7 +46,7 @@ namespace WindowsFormsApplication1
         {
             db.DellCity(cbCity.Text);
             cbCity.DataSource = db.GetTableCity();
-            cbCity.DisplayMember = "City";
+           // cbCity.DisplayMember = "City";
             MessageBox.Show("Город удален");
 
         }
