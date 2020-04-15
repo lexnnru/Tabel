@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace Tabel
 {
     partial class Form6
     {

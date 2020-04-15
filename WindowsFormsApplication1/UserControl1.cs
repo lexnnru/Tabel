@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
 
-namespace WindowsFormsApplication1
+namespace Tabel
 {
     public partial class UserControl1 : UserControl
     {

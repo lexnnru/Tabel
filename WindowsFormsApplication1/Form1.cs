@@ -5,7 +5,7 @@ using TabelLibrary;
 using TabelLibrary.Data;
 
 
-namespace WindowsFormsApplication1
+namespace Tabel
 {
     public partial class SendForm : Form
     {
@@ -21,7 +21,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            textBox1.Text = Application.StartupPath + "\\monthtabel" + Properties.Settings.Default.family + Properties.Settings.Default.TabelNumber + ".json";
+            textBox1.Text = Application.StartupPath + "\\monthtabel" + Tabel_client.Properties.Settings.Default.family + Tabel_client.Properties.Settings.Default.TabelNumber + ".json";
 
         }
 

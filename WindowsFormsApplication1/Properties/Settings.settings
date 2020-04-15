@@ -1,5 +1,5 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WindowsFormsApplication1.Properties" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Tabel_client.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
     <Setting Name="family" Type="System.String" Scope="User">
@@ -45,6 +45,15 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="parentName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="selectedTimeZone" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="dtStartFix" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="dtEndFix" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

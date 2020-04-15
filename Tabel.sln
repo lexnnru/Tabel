@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabelWinForm", "WindowsFormsApplication1\TabelWinForm.csproj", "{C994E7F0-A4FB-47ED-B6D3-68306A69A0F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabel_client", "WindowsFormsApplication1\Tabel_client.csproj", "{C994E7F0-A4FB-47ED-B6D3-68306A69A0F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabelLibrary", "TabelLibrary\TabelLibrary.csproj", "{80BA9271-58A0-4A3D-821D-6CB2144279D6}"
 EndProject

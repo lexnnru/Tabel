@@ -53,6 +53,7 @@
     <Compile Include="Model\Abstract\Crypto.cs" />
     <Compile Include="Model\Ad.cs" />
     <Compile Include="Model\Data\DataDb.cs" />
+    <Compile Include="Model\Data\EmployeeDay.cs" />
     <Compile Include="Model\Data\MailSet.cs" />
     <Compile Include="Model\Data\DataAd.cs" />
     <Compile Include="Model\Data\PGVR.cs" />

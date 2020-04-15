@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace Tabel
 {
     partial class Form2
     {
@@ -104,9 +104,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 17);
+            this.label1.Size = new System.Drawing.Size(0, 17);
             this.label1.TabIndex = 7;
-            this.label1.Text = "From:";
+            this.label1.Visible = false;
             // 
             // label2
             // 
@@ -191,6 +191,7 @@
             this.checkBox1.TabIndex = 16;
             this.checkBox1.Text = "Показать пароль";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // pictureBox1

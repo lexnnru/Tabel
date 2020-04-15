@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using TabelLibrary;
 using TabelLibrary.Model.Data;
 
-namespace WindowsFormsApplication1
+namespace Tabel
 {
 
     public partial class FormPGVR : Form

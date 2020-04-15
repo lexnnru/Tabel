@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TabelLibrary;
 
-namespace WindowsFormsApplication1
+namespace Tabel
 {
     public partial class FormCity : Form
     {

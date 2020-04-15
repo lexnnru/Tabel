@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using TabelLibrary;
 using TabelLibrary.Model;
 
-namespace WindowsFormsApplication1
+namespace Tabel
 {
     public partial class Form5 : Form
     {

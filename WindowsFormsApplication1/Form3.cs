@@ -9,8 +9,9 @@ using TabelLibrary.Data;
 using System.Threading;
 using System.Data;
 using TabelLibrary.Model.Data;
+using System.Linq;
 
-namespace WindowsFormsApplication1
+namespace Tabel
 {
     public partial class Form3 : Form
     {
@@ -21,6 +22,7 @@ namespace WindowsFormsApplication1
         public string subject;
         public string message;
         List<PGVR> listpgvr;
+        Thread tr;
 
 
 
@@ -31,23 +33,24 @@ namespace WindowsFormsApplication1
             this.ShowInTaskbar = false;
             btChange.Enabled = false;
             btDelete.Enabled = false;
-            SendForm Send = new SendForm();
             Settings s = new Settings(new TabelLibrary.Crypto.Xor());
             s.Open();
             mail = s.saveParam.username;
             subject= s.saveParam.subject;
             message = s.saveParam.message;
             listpgvr = new List<PGVR>();
+
+            
         }
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
 {
             Show();
-    WindowState = FormWindowState.Normal;
+    this.WindowState = FormWindowState.Normal;
 }
         private void Form3_Load(object sender, EventArgs e)
         {
             
-            Thread tr = new Thread(checkDay);
+            tr = new Thread(checkDay);
             tr.Start();
             btSaveAll.Enabled = true;
             dataGridViewDB.AllowUserToDeleteRows = false;
@@ -132,23 +135,37 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                dtStart.Value = new DateTime(1753, 1, 1, Properties.Settings.Default.hStart, Properties.Settings.Default.minStart, 0);
-                dtEnd.Value = new DateTime(1753, 1, 1, Properties.Settings.Default.hEnd, Properties.Settings.Default.minEnd, 0);
-                cbCity.Text = Properties.Settings.Default.city;
-                cbSpec.Text = Properties.Settings.Default.specCheck;
-                tbSpecAch.Text = Properties.Settings.Default.specAchiv;
+                dtStart.Value = new DateTime(1753, 1, 1, Tabel_client.Properties.Settings.Default.hStart, Tabel_client.Properties.Settings.Default.minStart, 0);
+                dtEnd.Value = new DateTime(1753, 1, 1, Tabel_client.Properties.Settings.Default.hEnd, Tabel_client.Properties.Settings.Default.minEnd, 0);
+                cbCity.Text = Tabel_client.Properties.Settings.Default.city;
+                cbSpec.Text = Tabel_client.Properties.Settings.Default.specCheck;
+                tbSpecAch.Text = Tabel_client.Properties.Settings.Default.specAchiv;
             }
             if (lastday < DateTime.DaysInMonth( DateTime.Now.Year, DateTime.Now.Month))
             { dtMain.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, lastday + 1); }
             else { dtMain.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, lastday); }
             dataGridViewDB.Rows[dataGridViewDB.Rows.Count-1].Selected = true;
+
+            DateTime dt;
+            if (Tabel_client.Properties.Settings.Default.selectedTimeZone != "")
+            {
+                IReadOnlyCollection<TimeZoneInfo> timeZoneInfos = TimeZoneInfo.GetSystemTimeZones();
+                TimeZoneInfo timeZoneInfo = timeZoneInfos.ElementAt(Convert.ToInt32(Tabel_client.Properties.Settings.Default.selectedTimeZone));
+                dt = TimeZoneInfo.ConvertTime(DateTime.Now, timeZoneInfo);
+            }
+            else
+            { dt = DateTime.Now; }
+           
+            if (Tabel_client.Properties.Settings.Default.dtStartFix.Date == dt.Date&& dt.Date==dtMain.Value.Date)
+            { dtStart.Value = Tabel_client.Properties.Settings.Default.dtStartFix; 
+            
+            }
+            if (Tabel_client.Properties.Settings.Default.dtEndFix.Date == dt.Date && dt.Date == dtMain.Value.Date)
+            { dtEnd.Value = Tabel_client.Properties.Settings.Default.dtEndFix; }
         }
         private void buttonSave_Click(object sender, EventArgs e)
         {
             db.AddCity(cbCity.Text);
-
-
-
             int lastday;
             if (dataGridViewDB.RowCount == 1)
             lastday = 0;
@@ -208,16 +225,16 @@ namespace WindowsFormsApplication1
                     dtStart.Value = new DateTime(1753, 1, 1, 0, 0, 0);
                     dtEnd.Value = new DateTime(1753, 1, 1, 0, 0, 0);
                     tbSpecAch.Text = "";
-                    cbCity.Text = Properties.Settings.Default.city;
-                    cbSpec.Text = Properties.Settings.Default.specCheck;
+                    cbCity.Text = Tabel_client.Properties.Settings.Default.city;
+                    cbSpec.Text = Tabel_client.Properties.Settings.Default.specCheck;
                 }
                 else
                 {
-                    dtStart.Value = new DateTime(1753, 1, 1, Properties.Settings.Default.hStart, Properties.Settings.Default.minStart, 0);
-                    dtEnd.Value = new DateTime(1753, 1, 1, Properties.Settings.Default.hEnd, Properties.Settings.Default.minEnd, 0);
-                    cbCity.Text = Properties.Settings.Default.city;
-                    cbSpec.Text = Properties.Settings.Default.specCheck;
-                    tbSpecAch.Text = Properties.Settings.Default.specAchiv;
+                    dtStart.Value = new DateTime(1753, 1, 1, Tabel_client.Properties.Settings.Default.hStart, Tabel_client.Properties.Settings.Default.minStart, 0);
+                    dtEnd.Value = new DateTime(1753, 1, 1, Tabel_client.Properties.Settings.Default.hEnd, Tabel_client.Properties.Settings.Default.minEnd, 0);
+                    cbCity.Text = Tabel_client.Properties.Settings.Default.city;
+                    cbSpec.Text = Tabel_client.Properties.Settings.Default.specCheck;
+                    tbSpecAch.Text = Tabel_client.Properties.Settings.Default.specAchiv;
 
                 }
 
@@ -227,15 +244,24 @@ namespace WindowsFormsApplication1
             else
             { MessageBox.Show("Неверная последовательность заполения табеля! " + "\r \n" + "          Дни вводятся строго последовательно!"); }
 
-            //cbCity.SelectedIndex = Properties.Settings.Default.cityIndex;
+            //cbCity.SelectedIndex = Tabel_client.Properties.Settings.Default.cityIndex;
         }
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            this.WindowState = FormWindowState.Minimized;
-            notifyIcon1.BalloonTipTitle = "Программа учета табельного времени спрятана";
-            notifyIcon1.BalloonTipText = "В любое время вы можете продолжить работу по внесению данных в табель";
-            notifyIcon1.ShowBalloonTip(2000);
+            if (tmExit.Checked==false)
+            { e.Cancel = true;
+                notifyIcon1.BalloonTipTitle = "Программа учета табельного времени спрятана";
+                notifyIcon1.BalloonTipText = "В любое время вы можете продолжить работу по внесению данных в табель";
+                notifyIcon1.ShowBalloonTip(2000);
+                this.WindowState = FormWindowState.Minimized;
+            }
+            else {
+                tr.Abort();
+                e.Cancel = false;
+            }
+           
+            
+           
         }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -325,16 +351,16 @@ namespace WindowsFormsApplication1
                     dtStart.Value = new DateTime(1753, 1, 1, 0, 0, 0);
                     dtEnd.Value = new DateTime(1753, 1, 1, 0, 0, 0);
                     tbSpecAch.Text = "";
-                    cbSpec.Text = Properties.Settings.Default.specCheck;
-                    cbCity.Text = Properties.Settings.Default.city;
+                    cbSpec.Text = Tabel_client.Properties.Settings.Default.specCheck;
+                    cbCity.Text = Tabel_client.Properties.Settings.Default.city;
                 }
                else
                 {
-                    dtStart.Value = new DateTime(1753, 1, 1, Properties.Settings.Default.hStart, Properties.Settings.Default.minStart, 0);
-                    dtEnd.Value = new DateTime(1753, 1, 1, Properties.Settings.Default.hEnd, Properties.Settings.Default.minEnd, 0);
-                    cbCity.Text = Properties.Settings.Default.city;
-                    cbSpec.Text = Properties.Settings.Default.specCheck;
-                    tbSpecAch.Text = Properties.Settings.Default.specAchiv;
+                    dtStart.Value = new DateTime(1753, 1, 1, Tabel_client.Properties.Settings.Default.hStart, Tabel_client.Properties.Settings.Default.minStart, 0);
+                    dtEnd.Value = new DateTime(1753, 1, 1, Tabel_client.Properties.Settings.Default.hEnd, Tabel_client.Properties.Settings.Default.minEnd, 0);
+                    cbCity.Text = Tabel_client.Properties.Settings.Default.city;
+                    cbSpec.Text = Tabel_client.Properties.Settings.Default.specCheck;
+                    tbSpecAch.Text = Tabel_client.Properties.Settings.Default.specAchiv;
                 }
            }
             else
@@ -395,11 +421,11 @@ namespace WindowsFormsApplication1
             }
             if (dataGridViewDB.Rows.Count==1)
             { dataGridViewDB.Rows[dataGridViewDB.Rows.Count - 1].Selected = true;
-                dtStart.Value = new DateTime(1753, 1, 1, Properties.Settings.Default.hStart, Properties.Settings.Default.minStart, 0);
-                dtEnd.Value = new DateTime(1753, 1, 1, Properties.Settings.Default.hEnd, Properties.Settings.Default.minEnd, 0);
-                cbCity.Text = Properties.Settings.Default.city;
-                cbSpec.Text = Properties.Settings.Default.specCheck;
-                tbSpecAch.Text = Properties.Settings.Default.specAchiv;
+                dtStart.Value = new DateTime(1753, 1, 1, Tabel_client.Properties.Settings.Default.hStart, Tabel_client.Properties.Settings.Default.minStart, 0);
+                dtEnd.Value = new DateTime(1753, 1, 1, Tabel_client.Properties.Settings.Default.hEnd, Tabel_client.Properties.Settings.Default.minEnd, 0);
+                cbCity.Text = Tabel_client.Properties.Settings.Default.city;
+                cbSpec.Text = Tabel_client.Properties.Settings.Default.specCheck;
+                tbSpecAch.Text = Tabel_client.Properties.Settings.Default.specAchiv;
             }
             else
             {
@@ -503,11 +529,11 @@ namespace WindowsFormsApplication1
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Rows.ForEach((i) => {
-                i.family = Properties.Settings.Default.family;
-                i.name = Properties.Settings.Default.name; i.parentName = Properties.Settings.Default.parentName;
-                i.subject = subject; i.message = message; i.mail = mail; i.tabelNumber = Properties.Settings.Default.TabelNumber; i.daynumber = i.daynumber.ToUniversalTime(); i.startday = i.startday.ToUniversalTime(); i.endday = i.endday.ToUniversalTime(); });
+                i.family = Tabel_client.Properties.Settings.Default.family;
+                i.name = Tabel_client.Properties.Settings.Default.name; i.parentName = Tabel_client.Properties.Settings.Default.parentName;
+                i.subject = subject; i.message = message; i.mail = mail; i.tabelNumber = Tabel_client.Properties.Settings.Default.TabelNumber; i.daynumber = i.daynumber.ToUniversalTime(); i.startday = i.startday.ToUniversalTime(); i.endday = i.endday.ToUniversalTime(); });
             string json = serializer.Serialize(Rows);
-            StreamWriter sw = new StreamWriter(new FileStream(Application.StartupPath + "\\Табель от "+Properties.Settings.Default.family +" табельный №" +Properties.Settings.Default.TabelNumber +" За " + DateTime.Now.ToString("MMM") +".json", FileMode.Create, FileAccess.Write));
+            StreamWriter sw = new StreamWriter(new FileStream(Application.StartupPath + "\\Табель от "+Tabel_client.Properties.Settings.Default.family +" табельный №" +Tabel_client.Properties.Settings.Default.TabelNumber +" За " + DateTime.Now.ToString("MMM") +".json", FileMode.Create, FileAccess.Write));
             sw.Write(json);
             sw.Close();
             SendForm Send = new SendForm();
@@ -521,19 +547,22 @@ namespace WindowsFormsApplication1
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Rows.ForEach((i) => {
-                i.family = Properties.Settings.Default.family;
-                i.name = Properties.Settings.Default.name; i.parentName = Properties.Settings.Default.parentName;
-                i.subject = subject; i.message = message; i.mail = mail; i.tabelNumber = Properties.Settings.Default.TabelNumber; i.daynumber = i.daynumber.ToUniversalTime(); i.startday = i.startday.ToUniversalTime(); i.endday = i.endday.ToUniversalTime(); });
+                i.family = Tabel_client.Properties.Settings.Default.family;
+                i.name = Tabel_client.Properties.Settings.Default.name; i.parentName = Tabel_client.Properties.Settings.Default.parentName;
+                i.subject = subject; i.message = message; i.mail = mail; i.tabelNumber = Tabel_client.Properties.Settings.Default.TabelNumber; i.daynumber = i.daynumber.ToUniversalTime(); i.startday = i.startday.ToUniversalTime(); i.endday = i.endday.ToUniversalTime(); });
             string json = serializer.Serialize(Rows);
-            StreamWriter sw = new StreamWriter(new FileStream(Application.StartupPath + "\\monthtabel" + Properties.Settings.Default.family + Properties.Settings.Default.TabelNumber + ".json", FileMode.Create, FileAccess.Write));
+            StreamWriter sw = new StreamWriter(new FileStream(Application.StartupPath + "\\monthtabel" + Tabel_client.Properties.Settings.Default.family + Tabel_client.Properties.Settings.Default.TabelNumber + ".json", FileMode.Create, FileAccess.Write));
             sw.Write(json);
             sw.Close();
         }
 
         private void notifyIcon1_DoubleClick_1(object sender, EventArgs e)
         {
-            Show();
-            WindowState = FormWindowState.Maximized;
+            //Show();
+            //WindowState = FormWindowState.Maximized;
+           // this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
+            this.TopMost = true;
         }
         private void btSettings_Click(object sender, EventArgs e)
         {
@@ -557,7 +586,7 @@ namespace WindowsFormsApplication1
                 lastday = 0;
             else
                 lastday = (Convert.ToDateTime(dataGridViewDB[0, dataGridViewDB.RowCount - 2].Value)).Day;
-            if (DateTime.Now == Properties.Settings.Default.dayX && lastday == 15)
+            if (DateTime.Now == Tabel_client.Properties.Settings.Default.dayX && lastday == 15)
             {
                 Send();
             }
@@ -569,7 +598,7 @@ namespace WindowsFormsApplication1
                     Send();
                 }
             }
-            //else if (DateTime.Now == Properties.Settings.Default.dayX && lastday == DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))
+            //else if (DateTime.Now == Tabel_client.Properties.Settings.Default.dayX && lastday == DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month))
             //{ Send(); }
             //else if (DateTime.Now.Day <= 15 && lastday < 15)
             //{
@@ -599,20 +628,21 @@ namespace WindowsFormsApplication1
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             Rows.ForEach((i) => {
-                i.family = Properties.Settings.Default.family;
-                i.name = Properties.Settings.Default.name; i.parentName = Properties.Settings.Default.parentName;
-                i.subject = subject; i.message = message; i.mail = this.mail; i.tabelNumber = Properties.Settings.Default.TabelNumber; i.daynumber = i.daynumber.ToUniversalTime(); i.startday = i.startday.ToUniversalTime(); i.endday = i.endday.ToUniversalTime(); });
+                i.family = Tabel_client.Properties.Settings.Default.family;
+                i.name = Tabel_client.Properties.Settings.Default.name; i.parentName = Tabel_client.Properties.Settings.Default.parentName;
+                i.subject = subject; i.message = message; i.mail = this.mail; i.tabelNumber = Tabel_client.Properties.Settings.Default.TabelNumber; i.daynumber = i.daynumber.ToUniversalTime(); i.startday = i.startday.ToUniversalTime(); i.endday = i.endday.ToUniversalTime(); });
             string json = serializer.Serialize(Rows);
-            //StreamWriter sw = new StreamWriter(new FileStream(Application.StartupPath + "\\Табель от " + Properties.Settings.Default.FIO + " табельный №" + Properties.Settings.Default.TabelNumber + " за " + DateTime.Now.ToString("MMM") + " " + DateTime.Now.Year + " года" + ".json", FileMode.Create, FileAccess.Write));
+          
+            //StreamWriter sw = new StreamWriter(new FileStream(Application.StartupPath + "\\Табель от " + Tabel_client.Properties.Settings.Default.FIO + " табельный №" + Tabel_client.Properties.Settings.Default.TabelNumber + " за " + DateTime.Now.ToString("MMM") + " " + DateTime.Now.Year + " года" + ".json", FileMode.Create, FileAccess.Write));
             //sw.Write(json);
-            File.WriteAllText(Application.StartupPath + "\\Табель от " + Properties.Settings.Default.family + " табельный №" + Properties.Settings.Default.TabelNumber + " за " + DateTime.Now.ToString("MMM") + " " + DateTime.Now.Year + " года" + ".json", json);
+            File.WriteAllText(Application.StartupPath + "\\Табель от " + Tabel_client.Properties.Settings.Default.family + " табельный №" + Tabel_client.Properties.Settings.Default.TabelNumber + " за " + dtMain.Value.ToString("MMMM yyyy") + ".tt", json);
             //sw.Close();
             SendForm Send = new SendForm();
             Settings s = new Settings(new TabelLibrary.Crypto.Xor());
             s.Open();
 
             SendMail mail = new SendMail();
-            if (mail.Send(new MailSet(s.saveParam.ToString(), Application.StartupPath + "\\Табель от " + Properties.Settings.Default.family + " табельный №" + Properties.Settings.Default.TabelNumber + " за " + DateTime.Now.ToString("MMM") + " " + DateTime.Now.Year + " года" + ".json")))
+            if (mail.Send(new MailSet(s.saveParam.ToString(), Application.StartupPath + "\\Табель от " + Tabel_client.Properties.Settings.Default.family + " табельный №" + Tabel_client.Properties.Settings.Default.TabelNumber + " за " + dtMain.Value.ToString("MMMM yyyy") + ".tt")))
             {
                 MessageBox.Show("Табель отправлен");
                 this.Close();
@@ -662,12 +692,12 @@ namespace WindowsFormsApplication1
             List<OneDayData> Rows = db.GetTable(dtMain.Value.Year, dtMain.Value.Month);
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-            Rows.ForEach((i) => { i.family = Properties.Settings.Default.family;
-                i.name = Properties.Settings.Default.name; i.parentName = Properties.Settings.Default.parentName;
+            Rows.ForEach((i) => { i.family = Tabel_client.Properties.Settings.Default.family;
+                i.name = Tabel_client.Properties.Settings.Default.name; i.parentName = Tabel_client.Properties.Settings.Default.parentName;
                 i.subject = subject; i.message = message; i.mail = mail;
-                i.tabelNumber = Properties.Settings.Default.TabelNumber; i.daynumber = i.daynumber.ToUniversalTime(); i.startday = i.startday.ToUniversalTime(); i.endday = i.endday.ToUniversalTime(); });
+                i.tabelNumber = Tabel_client.Properties.Settings.Default.TabelNumber; i.daynumber = i.daynumber.ToUniversalTime(); i.startday = i.startday.ToUniversalTime(); i.endday = i.endday.ToUniversalTime(); });
             string json = serializer.Serialize(Rows);
-            StreamWriter sw = new StreamWriter(new FileStream(filename + Properties.Settings.Default.family + Properties.Settings.Default.TabelNumber + ".json", FileMode.Create, FileAccess.Write));
+            StreamWriter sw = new StreamWriter(new FileStream(filename + Tabel_client.Properties.Settings.Default.family + Tabel_client.Properties.Settings.Default.TabelNumber + ".json", FileMode.Create, FileAccess.Write));
             sw.Write(json);
             sw.Close();
             MessageBox.Show("Файл сохранен");
@@ -724,7 +754,6 @@ namespace WindowsFormsApplication1
         private void FormCity_RefreshCity()
         {
             cbCity.DataSource = db.GetTableCity();
-
         }
         private void RefreshPGVR()
         {
@@ -795,7 +824,7 @@ namespace WindowsFormsApplication1
 
                 }
             end1:;
-                Properties.Settings.Default.dayX = new DateTime(DateTime.Now.Year, DateTime.Now.Month, dayX);
+                Tabel_client.Properties.Settings.Default.dayX = new DateTime(DateTime.Now.Year, DateTime.Now.Month, dayX);
                 if (DateTime.Now.Day==dayX)
                 {
                     for (int i = 0; i <= 3; i++)
@@ -845,7 +874,95 @@ namespace WindowsFormsApplication1
 
         private void cbPGVR_SelectedValueChanged(object sender, EventArgs e)
         {
-            tbSpecAch.Text += "ПГВР: " +listpgvr[cbPGVR.SelectedIndex].Pgvr+ " ";
+            tbSpecAch.Text += " ПГВР: " +listpgvr[cbPGVR.SelectedIndex].Pgvr+ " ";
+        }
+
+        private void Form3_Activated(object sender, EventArgs e)
+        {
+            this.SendToBack();
+        }
+
+        private void btSetStartTime_Click(object sender, EventArgs e)
+        {
+           
+            IReadOnlyCollection<TimeZoneInfo> timeZoneInfos = TimeZoneInfo.GetSystemTimeZones();
+            if (Tabel_client.Properties.Settings.Default.selectedTimeZone=="")
+            {
+                dtStart.Value = DateTime.Now;
+                Tabel_client.Properties.Settings.Default.dtStartFix = DateTime.Now;
+                Tabel_client.Properties.Settings.Default.Save();
+            }
+            else {
+                TimeZoneInfo obj = timeZoneInfos.ElementAt(Convert.ToInt32(Tabel_client.Properties.Settings.Default.selectedTimeZone));
+                DateTime dt = TimeZoneInfo.ConvertTime(DateTime.Now, obj);
+                dtStart.Value = dt;
+                Tabel_client.Properties.Settings.Default.dtStartFix = dt;
+                Tabel_client.Properties.Settings.Default.Save();
+            }
+            
+            
+        }
+
+        private void btSetEndTime_Click(object sender, EventArgs e)
+        {
+            IReadOnlyCollection<TimeZoneInfo> timeZoneInfos = TimeZoneInfo.GetSystemTimeZones();
+            if (Tabel_client.Properties.Settings.Default.selectedTimeZone == "")
+            {
+                dtEnd.Value = DateTime.Now;
+                Tabel_client.Properties.Settings.Default.dtEndFix = DateTime.Now;
+            }
+            else
+            {
+                TimeZoneInfo obj = timeZoneInfos.ElementAt(Convert.ToInt32(Tabel_client.Properties.Settings.Default.selectedTimeZone));
+                DateTime dt = TimeZoneInfo.ConvertTime(DateTime.Now, obj);
+                dtEnd.Value = dt;
+                Tabel_client.Properties.Settings.Default.dtEndFix = dt;
+            }
+            Tabel_client.Properties.Settings.Default.Save();
+        }
+
+        private void contextMenuStrip1_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            tmExit.Checked = true;
+            this.Close();
+           
+        }
+
+        private void btDefaulDaySart_Click(object sender, EventArgs e)
+        {
+            Tabel_client.Properties.Settings.Default.hStart = dtStart.Value.Hour;
+            Tabel_client.Properties.Settings.Default.minStart = dtStart.Value.Minute;
+            Tabel_client.Properties.Settings.Default.Save();
+        }
+
+        private void btDefaulDayEnd_Click(object sender, EventArgs e)
+        {
+            Tabel_client.Properties.Settings.Default.hEnd = dtEnd.Value.Hour;
+            Tabel_client.Properties.Settings.Default.minEnd = dtEnd.Value.Minute;
+            Tabel_client.Properties.Settings.Default.Save();
+        }
+
+        private void btDefaultCity_Click(object sender, EventArgs e)
+        {
+            Tabel_client.Properties.Settings.Default.city = cbCity.Text;
+            Tabel_client.Properties.Settings.Default.Save();
+        }
+
+        private void btDefaultSpecCheck_Click(object sender, EventArgs e)
+        {
+            Tabel_client.Properties.Settings.Default.specCheck = cbSpec.Text;
+            Tabel_client.Properties.Settings.Default.Save();
+        }
+
+        private void btDefaultAchiv_Click(object sender, EventArgs e)
+        {
+            Tabel_client.Properties.Settings.Default.specAchiv = tbSpecAch.Text;
+            Tabel_client.Properties.Settings.Default.Save();
         }
     }
 }

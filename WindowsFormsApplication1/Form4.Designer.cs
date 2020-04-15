@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace Tabel
 {
     partial class Form4
     {
@@ -50,6 +50,9 @@
             this.tbName = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.tbParentName = new System.Windows.Forms.TextBox();
+            this.btSity = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbTimeZone = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // dtStart
@@ -63,7 +66,7 @@
             this.dtStart.Name = "dtStart";
             this.dtStart.ShowUpDown = true;
             this.dtStart.Size = new System.Drawing.Size(312, 27);
-            this.dtStart.TabIndex = 37;
+            this.dtStart.TabIndex = 1;
             // 
             // dtEnd
             // 
@@ -72,11 +75,11 @@
             this.dtEnd.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dtEnd.CustomFormat = "HH:mm";
             this.dtEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.dtEnd.Location = new System.Drawing.Point(275, 102);
+            this.dtEnd.Location = new System.Drawing.Point(275, 86);
             this.dtEnd.Name = "dtEnd";
             this.dtEnd.ShowUpDown = true;
             this.dtEnd.Size = new System.Drawing.Size(312, 27);
-            this.dtEnd.TabIndex = 38;
+            this.dtEnd.TabIndex = 2;
             // 
             // label1
             // 
@@ -90,7 +93,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(36, 107);
+            this.label2.Location = new System.Drawing.Point(36, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(178, 17);
             this.label2.TabIndex = 40;
@@ -99,7 +102,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(36, 152);
+            this.label3.Location = new System.Drawing.Point(36, 170);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(154, 17);
             this.label3.TabIndex = 41;
@@ -130,10 +133,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSpec.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSpec.FormattingEnabled = true;
-            this.cbSpec.Location = new System.Drawing.Point(275, 152);
+            this.cbSpec.Location = new System.Drawing.Point(275, 170);
             this.cbSpec.Name = "cbSpec";
             this.cbSpec.Size = new System.Drawing.Size(312, 24);
-            this.cbSpec.TabIndex = 44;
+            this.cbSpec.TabIndex = 3;
             // 
             // cbCity
             // 
@@ -143,7 +146,7 @@
             this.cbCity.Location = new System.Drawing.Point(275, 200);
             this.cbCity.Name = "cbCity";
             this.cbCity.Size = new System.Drawing.Size(312, 24);
-            this.cbCity.TabIndex = 45;
+            this.cbCity.TabIndex = 4;
             // 
             // tbSpecAch
             // 
@@ -151,7 +154,7 @@
             this.tbSpecAch.Location = new System.Drawing.Point(275, 240);
             this.tbSpecAch.Name = "tbSpecAch";
             this.tbSpecAch.Size = new System.Drawing.Size(312, 163);
-            this.tbSpecAch.TabIndex = 46;
+            this.tbSpecAch.TabIndex = 5;
             this.tbSpecAch.Text = "";
             // 
             // btSave
@@ -159,7 +162,7 @@
             this.btSave.Location = new System.Drawing.Point(377, 655);
             this.btSave.Name = "btSave";
             this.btSave.Size = new System.Drawing.Size(123, 32);
-            this.btSave.TabIndex = 47;
+            this.btSave.TabIndex = 11;
             this.btSave.Text = "Сохранить";
             this.btSave.UseVisualStyleBackColor = true;
             this.btSave.Click += new System.EventHandler(this.btSave_Click);
@@ -169,14 +172,14 @@
             this.tbFamily.Location = new System.Drawing.Point(271, 433);
             this.tbFamily.Name = "tbFamily";
             this.tbFamily.Size = new System.Drawing.Size(312, 22);
-            this.tbFamily.TabIndex = 56;
+            this.tbFamily.TabIndex = 6;
             // 
             // tbTabelNumber
             // 
             this.tbTabelNumber.Location = new System.Drawing.Point(271, 587);
             this.tbTabelNumber.Name = "tbTabelNumber";
             this.tbTabelNumber.Size = new System.Drawing.Size(312, 22);
-            this.tbTabelNumber.TabIndex = 57;
+            this.tbTabelNumber.TabIndex = 9;
             // 
             // label6
             // 
@@ -229,7 +232,7 @@
             this.tbName.Location = new System.Drawing.Point(271, 461);
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(312, 22);
-            this.tbName.TabIndex = 62;
+            this.tbName.TabIndex = 7;
             // 
             // label11
             // 
@@ -245,13 +248,49 @@
             this.tbParentName.Location = new System.Drawing.Point(271, 489);
             this.tbParentName.Name = "tbParentName";
             this.tbParentName.Size = new System.Drawing.Size(312, 22);
-            this.tbParentName.TabIndex = 64;
+            this.tbParentName.TabIndex = 8;
+            // 
+            // btSity
+            // 
+            this.btSity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btSity.FlatAppearance.BorderSize = 0;
+            this.btSity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btSity.Image = ((System.Drawing.Image)(resources.GetObject("btSity.Image")));
+            this.btSity.Location = new System.Drawing.Point(599, 200);
+            this.btSity.Name = "btSity";
+            this.btSity.Size = new System.Drawing.Size(25, 25);
+            this.btSity.TabIndex = 66;
+            this.btSity.UseVisualStyleBackColor = true;
+            this.btSity.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(36, 132);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(99, 17);
+            this.label12.TabIndex = 67;
+            this.label12.Text = "Часовой пояс";
+            // 
+            // cbTimeZone
+            // 
+            this.cbTimeZone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbTimeZone.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTimeZone.FormattingEnabled = true;
+            this.cbTimeZone.Location = new System.Drawing.Point(275, 129);
+            this.cbTimeZone.Name = "cbTimeZone";
+            this.cbTimeZone.Size = new System.Drawing.Size(312, 24);
+            this.cbTimeZone.TabIndex = 68;
             // 
             // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 731);
+            this.Controls.Add(this.cbTimeZone);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.btSity);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.tbParentName);
             this.Controls.Add(this.label10);
@@ -308,5 +347,8 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tbParentName;
+        private System.Windows.Forms.Button btSity;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cbTimeZone;
     }
 }

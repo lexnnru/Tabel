@@ -400,6 +400,17 @@
                 {
                 }
             }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_7F0495690EFF41FBBA4CD6318B10A6F2"
+            {
+            "Name" = "8:#1928"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:StartupFolder"
+                "Folders"
+                {
+                }
+            }
             "{1525181F-901A-416C-8A58-119130FE478E}:_C3FB279C6CF04506A01EA8BFB34E8EB9"
             {
             "Name" = "8:#1919"
@@ -451,7 +462,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Tabel"
         "ProductCode" = "8:{F7BCE2BD-59E2-49B2-B8DE-1914F22597A3}"
-        "PackageCode" = "8:{6FAA9D6F-6D8A-41B7-9ADE-9A4AEB24C1C5}"
+        "PackageCode" = "8:{4327C009-3810-40FC-8548-60F6E1150E32}"
         "UpgradeCode" = "8:{715226AA-2CCE-499F-A0BC-124FAAEFC3BB}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -462,7 +473,7 @@
         "Manufacturer" = "8:Sintek"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup1"
+        "Title" = "8:Setup"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Default Company Name"
         "Keywords" = "8:"
@@ -492,20 +503,6 @@
                     "Transitive" = "11:FALSE"
                         "Keys"
                         {
-                            "{60EA8692-D2D5-43EB-80DC-7906BF13D6EF}:_73685A2620B44378A1163BFCD1B10D07"
-                            {
-                            "Name" = "8:[Manufacturer]"
-                            "Condition" = "8:"
-                            "AlwaysCreate" = "11:FALSE"
-                            "DeleteAtUninstall" = "11:FALSE"
-                            "Transitive" = "11:FALSE"
-                                "Keys"
-                                {
-                                }
-                                "Values"
-                                {
-                                }
-                            }
                         }
                         "Values"
                         {
@@ -571,7 +568,21 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F8C8F48B8025428DB4B5668C0AFB4AAF"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_1D8D778F46304BF59F53FFE9668AC8F9"
+            {
+            "Name" = "8:Tabel"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_2F610656E6F94252998F7973DE5253C2"
+            "Folder" = "8:_7F0495690EFF41FBBA4CD6318B10A6F2"
+            "WorkingFolder" = "8:_F1FA5A1F8C8E41F199094E2B9CF2422F"
+            "Icon" = "8:_57D8881F826A4F62BF7ED1DC340E52FC"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_ADA04ECC12E341008F826F9EF8949DB7"
             {
             "Name" = "8:Tabel"
             "Arguments" = "8:"
@@ -986,7 +997,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2F610656E6F94252998F7973DE5253C2"
             {
-            "SourcePath" = "8:..\\WindowsFormsApplication1\\obj\\Debug\\WindowsFormsApplication1.exe"
+            "SourcePath" = "8:..\\WindowsFormsApplication1\\obj\\Debug\\Tabel_client.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F1FA5A1F8C8E41F199094E2B9CF2422F"

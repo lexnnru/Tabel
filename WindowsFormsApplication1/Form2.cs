@@ -8,7 +8,7 @@ using TabelLibrary.Crypto;
 using TabelLibrary;
 using TabelLibrary.Data;
 
-namespace WindowsFormsApplication1
+namespace Tabel
 { 
 
     public partial class Form2 : Form
