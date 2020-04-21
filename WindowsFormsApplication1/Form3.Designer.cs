@@ -48,10 +48,16 @@
             this.btChange = new System.Windows.Forms.Button();
             this.btDelete = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tmExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btDefaulDaySart = new System.Windows.Forms.Button();
+            this.btDefaulDayEnd = new System.Windows.Forms.Button();
+            this.btDefaultCity = new System.Windows.Forms.Button();
+            this.btDefaultSpecCheck = new System.Windows.Forms.Button();
+            this.btDefaultAchiv = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.отправитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,17 +77,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btSetStartTime = new System.Windows.Forms.Button();
             this.btSetEndTime = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tmExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.btDefaulDaySart = new System.Windows.Forms.Button();
-            this.btDefaulDayEnd = new System.Windows.Forms.Button();
-            this.btDefaultCity = new System.Windows.Forms.Button();
-            this.btDefaultSpecCheck = new System.Windows.Forms.Button();
-            this.btDefaultAchiv = new System.Windows.Forms.Button();
             this.userControl11 = new Tabel.UserControl1();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDB)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewDB
@@ -286,15 +285,21 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // notifyIcon1
+            // contextMenuStrip1
             // 
-            this.notifyIcon1.BalloonTipText = "Заполнение табеля.";
-            this.notifyIcon1.BalloonTipTitle = "Ежедневное ведение учета табельного времени.";
-            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "Учет табельного времени";
-            this.notifyIcon1.Visible = true;
-            this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick_1);
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tmExit});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 28);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // tmExit
+            // 
+            this.tmExit.Name = "tmExit";
+            this.tmExit.Size = new System.Drawing.Size(122, 24);
+            this.tmExit.Text = "Выход";
+            this.tmExit.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // button1
             // 
@@ -323,6 +328,71 @@
             this.toolTip1.SetToolTip(this.button2, "Редактирование списка городов");
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btDefaulDaySart
+            // 
+            this.btDefaulDaySart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDefaulDaySart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaulDaySart.BackgroundImage")));
+            this.btDefaulDaySart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btDefaulDaySart.Location = new System.Drawing.Point(960, 187);
+            this.btDefaulDaySart.Name = "btDefaulDaySart";
+            this.btDefaulDaySart.Size = new System.Drawing.Size(25, 31);
+            this.btDefaulDaySart.TabIndex = 104;
+            this.toolTip1.SetToolTip(this.btDefaulDaySart, "Сделать по умолчанию.");
+            this.btDefaulDaySart.UseVisualStyleBackColor = true;
+            this.btDefaulDaySart.Click += new System.EventHandler(this.btDefaulDaySart_Click);
+            // 
+            // btDefaulDayEnd
+            // 
+            this.btDefaulDayEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDefaulDayEnd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaulDayEnd.BackgroundImage")));
+            this.btDefaulDayEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btDefaulDayEnd.Location = new System.Drawing.Point(1135, 187);
+            this.btDefaulDayEnd.Name = "btDefaulDayEnd";
+            this.btDefaulDayEnd.Size = new System.Drawing.Size(25, 31);
+            this.btDefaulDayEnd.TabIndex = 105;
+            this.toolTip1.SetToolTip(this.btDefaulDayEnd, "Сделать по умолчанию.");
+            this.btDefaulDayEnd.UseVisualStyleBackColor = true;
+            this.btDefaulDayEnd.Click += new System.EventHandler(this.btDefaulDayEnd_Click);
+            // 
+            // btDefaultCity
+            // 
+            this.btDefaultCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDefaultCity.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaultCity.BackgroundImage")));
+            this.btDefaultCity.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btDefaultCity.Location = new System.Drawing.Point(960, 308);
+            this.btDefaultCity.Name = "btDefaultCity";
+            this.btDefaultCity.Size = new System.Drawing.Size(25, 31);
+            this.btDefaultCity.TabIndex = 106;
+            this.toolTip1.SetToolTip(this.btDefaultCity, "Сделать по умолчанию.");
+            this.btDefaultCity.UseVisualStyleBackColor = true;
+            this.btDefaultCity.Click += new System.EventHandler(this.btDefaultCity_Click);
+            // 
+            // btDefaultSpecCheck
+            // 
+            this.btDefaultSpecCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDefaultSpecCheck.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaultSpecCheck.BackgroundImage")));
+            this.btDefaultSpecCheck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btDefaultSpecCheck.Location = new System.Drawing.Point(960, 351);
+            this.btDefaultSpecCheck.Name = "btDefaultSpecCheck";
+            this.btDefaultSpecCheck.Size = new System.Drawing.Size(25, 31);
+            this.btDefaultSpecCheck.TabIndex = 107;
+            this.toolTip1.SetToolTip(this.btDefaultSpecCheck, "Сделать по умолчанию.");
+            this.btDefaultSpecCheck.UseVisualStyleBackColor = true;
+            this.btDefaultSpecCheck.Click += new System.EventHandler(this.btDefaultSpecCheck_Click);
+            // 
+            // btDefaultAchiv
+            // 
+            this.btDefaultAchiv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btDefaultAchiv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaultAchiv.BackgroundImage")));
+            this.btDefaultAchiv.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btDefaultAchiv.Location = new System.Drawing.Point(960, 525);
+            this.btDefaultAchiv.Name = "btDefaultAchiv";
+            this.btDefaultAchiv.Size = new System.Drawing.Size(25, 31);
+            this.btDefaultAchiv.TabIndex = 108;
+            this.toolTip1.SetToolTip(this.btDefaultAchiv, "Сделать по умолчанию.");
+            this.btDefaultAchiv.UseVisualStyleBackColor = true;
+            this.btDefaultAchiv.Click += new System.EventHandler(this.btDefaultAchiv_Click);
             // 
             // menuStrip1
             // 
@@ -500,87 +570,6 @@
             this.btSetEndTime.UseVisualStyleBackColor = true;
             this.btSetEndTime.Click += new System.EventHandler(this.btSetEndTime_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tmExit});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 28);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // tmExit
-            // 
-            this.tmExit.Name = "tmExit";
-            this.tmExit.Size = new System.Drawing.Size(122, 24);
-            this.tmExit.Text = "Выход";
-            this.tmExit.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
-            // 
-            // btDefaulDaySart
-            // 
-            this.btDefaulDaySart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDefaulDaySart.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaulDaySart.BackgroundImage")));
-            this.btDefaulDaySart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btDefaulDaySart.Location = new System.Drawing.Point(960, 187);
-            this.btDefaulDaySart.Name = "btDefaulDaySart";
-            this.btDefaulDaySart.Size = new System.Drawing.Size(25, 31);
-            this.btDefaulDaySart.TabIndex = 104;
-            this.toolTip1.SetToolTip(this.btDefaulDaySart, "Сделать по умолчанию.");
-            this.btDefaulDaySart.UseVisualStyleBackColor = true;
-            this.btDefaulDaySart.Click += new System.EventHandler(this.btDefaulDaySart_Click);
-            // 
-            // btDefaulDayEnd
-            // 
-            this.btDefaulDayEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDefaulDayEnd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaulDayEnd.BackgroundImage")));
-            this.btDefaulDayEnd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btDefaulDayEnd.Location = new System.Drawing.Point(1135, 187);
-            this.btDefaulDayEnd.Name = "btDefaulDayEnd";
-            this.btDefaulDayEnd.Size = new System.Drawing.Size(25, 31);
-            this.btDefaulDayEnd.TabIndex = 105;
-            this.toolTip1.SetToolTip(this.btDefaulDayEnd, "Сделать по умолчанию.");
-            this.btDefaulDayEnd.UseVisualStyleBackColor = true;
-            this.btDefaulDayEnd.Click += new System.EventHandler(this.btDefaulDayEnd_Click);
-            // 
-            // btDefaultCity
-            // 
-            this.btDefaultCity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDefaultCity.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaultCity.BackgroundImage")));
-            this.btDefaultCity.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btDefaultCity.Location = new System.Drawing.Point(960, 308);
-            this.btDefaultCity.Name = "btDefaultCity";
-            this.btDefaultCity.Size = new System.Drawing.Size(25, 31);
-            this.btDefaultCity.TabIndex = 106;
-            this.toolTip1.SetToolTip(this.btDefaultCity, "Сделать по умолчанию.");
-            this.btDefaultCity.UseVisualStyleBackColor = true;
-            this.btDefaultCity.Click += new System.EventHandler(this.btDefaultCity_Click);
-            // 
-            // btDefaultSpecCheck
-            // 
-            this.btDefaultSpecCheck.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDefaultSpecCheck.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaultSpecCheck.BackgroundImage")));
-            this.btDefaultSpecCheck.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btDefaultSpecCheck.Location = new System.Drawing.Point(960, 351);
-            this.btDefaultSpecCheck.Name = "btDefaultSpecCheck";
-            this.btDefaultSpecCheck.Size = new System.Drawing.Size(25, 31);
-            this.btDefaultSpecCheck.TabIndex = 107;
-            this.toolTip1.SetToolTip(this.btDefaultSpecCheck, "Сделать по умолчанию.");
-            this.btDefaultSpecCheck.UseVisualStyleBackColor = true;
-            this.btDefaultSpecCheck.Click += new System.EventHandler(this.btDefaultSpecCheck_Click);
-            // 
-            // btDefaultAchiv
-            // 
-            this.btDefaultAchiv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btDefaultAchiv.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btDefaultAchiv.BackgroundImage")));
-            this.btDefaultAchiv.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btDefaultAchiv.Location = new System.Drawing.Point(960, 525);
-            this.btDefaultAchiv.Name = "btDefaultAchiv";
-            this.btDefaultAchiv.Size = new System.Drawing.Size(25, 31);
-            this.btDefaultAchiv.TabIndex = 108;
-            this.toolTip1.SetToolTip(this.btDefaultAchiv, "Сделать по умолчанию.");
-            this.btDefaultAchiv.UseVisualStyleBackColor = true;
-            this.btDefaultAchiv.Click += new System.EventHandler(this.btDefaultAchiv_Click);
-            // 
             // userControl11
             // 
             this.userControl11.Location = new System.Drawing.Point(1293, 523);
@@ -636,9 +625,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form3_FormClosing);
             this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewDB)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -663,7 +652,6 @@
         private System.Windows.Forms.Button btChange;
         private System.Windows.Forms.Button btDelete;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;

@@ -22,7 +22,6 @@ namespace Tabel
         public string subject;
         public string message;
         List<PGVR> listpgvr;
-        Thread tr;
 
 
 
@@ -50,8 +49,8 @@ namespace Tabel
         private void Form3_Load(object sender, EventArgs e)
         {
             
-            tr = new Thread(checkDay);
-            tr.Start();
+            //tr = new Thread(checkDay);
+            //tr.Start();
             btSaveAll.Enabled = true;
             dataGridViewDB.AllowUserToDeleteRows = false;
             dataGridViewDB.AllowUserToResizeColumns = false;
@@ -248,20 +247,18 @@ namespace Tabel
         }
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (tmExit.Checked==false)
-            { e.Cancel = true;
-                notifyIcon1.BalloonTipTitle = "Программа учета табельного времени спрятана";
-                notifyIcon1.BalloonTipText = "В любое время вы можете продолжить работу по внесению данных в табель";
-                notifyIcon1.ShowBalloonTip(2000);
-                this.WindowState = FormWindowState.Minimized;
+            if (tmExit.Checked == false)
+            {
+                e.Cancel = true;
+                this.Hide();
             }
-            else {
-                tr.Abort();
+            else
+            {
                 e.Cancel = false;
             }
-           
-            
-           
+
+
+
         }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
@@ -884,7 +881,6 @@ namespace Tabel
 
         private void btSetStartTime_Click(object sender, EventArgs e)
         {
-           
             IReadOnlyCollection<TimeZoneInfo> timeZoneInfos = TimeZoneInfo.GetSystemTimeZones();
             if (Tabel_client.Properties.Settings.Default.selectedTimeZone=="")
             {
@@ -899,10 +895,7 @@ namespace Tabel
                 Tabel_client.Properties.Settings.Default.dtStartFix = dt;
                 Tabel_client.Properties.Settings.Default.Save();
             }
-            
-            
         }
-
         private void btSetEndTime_Click(object sender, EventArgs e)
         {
             IReadOnlyCollection<TimeZoneInfo> timeZoneInfos = TimeZoneInfo.GetSystemTimeZones();
@@ -963,6 +956,10 @@ namespace Tabel
         {
             Tabel_client.Properties.Settings.Default.specAchiv = tbSpecAch.Text;
             Tabel_client.Properties.Settings.Default.Save();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
         }
     }
 }

@@ -318,6 +318,7 @@
             this.MinimizeBox = false;
             this.Name = "Form4";
             this.Text = "Значения по умолчанию";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Настройки_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

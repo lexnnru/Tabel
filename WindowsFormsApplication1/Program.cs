@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tabel_client;
 using TabelLibrary;
 
 namespace Tabel
@@ -16,9 +17,19 @@ namespace Tabel
         [STAThread]
         static void Main()
         {
-            SendForm First_form = new SendForm();
-            Form3 FormBD = new Form3 ();
-        
+            //SendForm First_form = new SendForm();
+            //Widget widget = new Widget();
+            //widget.Show();
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+           
+            //Application.Run(new Form3());
+            Application.Run(new StartupForm());
+            //Widget widget = new Widget();
+            //widget.Show();
+            //Form3 FormBD = new Form3();
+            //FormBD.Show();
+
             //int dayX = 1;
             //Reg triger = new Reg();
             //int b=triger.reed();
@@ -29,8 +40,8 @@ namespace Tabel
             //}
             //for (;;)
             //{
-                FormBD.ShowDialog();
-               
+
+
             //    int dayinmonth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
             //    DateTime currentday = DateTime.Now;
             //    var dayofweek15 = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 15).DayOfWeek;
